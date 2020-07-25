@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 
 class Details extends Component {
+
+  componentDidMount(){
+    // checks if there is anything in the 'details' redux state
+    // and goes to homepage if nothing found
+    if (this.props.reduxState.details.length === 0){
+      this.props.history.push('/')
+    }
+  }
+  
   render() {
     return (
       <div className="Details">
@@ -19,4 +29,4 @@ const mapStateToProps = reduxState => ({
   reduxState,
 });
 
-export default connect(mapStateToProps)(Details);
+export default connect(mapStateToProps)(withRouter(Details));
