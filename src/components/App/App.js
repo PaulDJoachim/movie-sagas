@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Home from '../Home/Home'
 import Details from '../Details/Details'
 
@@ -9,11 +9,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Home />
-        <Router>
-          <Route exact path="/" Component={Home} />
-          <Route exact path="/detalis" Component={Details} />
-        </Router>
+        <p>this is the App.js</p>
+        <main>
+          <Router>
+            <Link to='/'>Home</Link>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path="/details" component={Details} />
+            </Switch>
+          </Router>
+        </main>
       </div>
     );
   }

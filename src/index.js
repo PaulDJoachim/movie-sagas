@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import './index.css';
 import App from './components/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
@@ -43,6 +45,15 @@ const movies = (state = [], action) => {
     }
 }
 
+const details = (state = [], action) => {
+  switch (action.type) {
+      case 'SET_DETAIL':
+          return action.payload;
+      default:
+          return state;
+  }
+}
+
 // Used to store the movie genres
 const genres = (state = [], action) => {
     switch (action.type) {
@@ -57,6 +68,7 @@ const genres = (state = [], action) => {
 const storeInstance = createStore(
     combineReducers({
         movies,
+        details,
         genres,
     }),
     // Add sagaMiddleware to our store
@@ -66,6 +78,11 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
-    document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={storeInstance}>
+    <App />
+  </Provider>, 
+  document.getElementById('root')
+);
+
 registerServiceWorker();
