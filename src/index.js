@@ -14,11 +14,15 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 
+
+
+
+
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeEvery('GET_MOVIES', getMovies);
+  yield takeEvery('EDIT_MOVIE', editMovie);
 }
-
 
 function* getMovies(){
   //us try/catch for errors - replaces promise .then & .catch
@@ -32,10 +36,22 @@ function* getMovies(){
 }
 
 
-// Create sagaMiddleware
-const sagaMiddleware = createSagaMiddleware();
+function* editMovie(action){
+  //us try/catch for errors - replaces promise .then & .catch
+  try {
+    const response = yield axios.put('/movies', action.payload);
 
-// Used to store movies returned from the server
+    // yield put({ type: 'SET_MOVIES', payload: response });
+  } catch (error) {
+      console.log('error with movie edit request', error);
+  }
+}
+
+
+
+/// REDUCERS ///
+
+// Used to store all movies returned from the server
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
@@ -45,6 +61,7 @@ const movies = (state = [], action) => {
     }
 }
 
+// Used to store details about a single movie selected by the user
 const details = (state = [], action) => {
   switch (action.type) {
       case 'SET_DETAIL':
@@ -63,6 +80,11 @@ const genres = (state = [], action) => {
             return state;
     }
 }
+
+
+
+// Create sagaMiddleware
+const sagaMiddleware = createSagaMiddleware();
 
 // Create one store that all components can use
 const storeInstance = createStore(

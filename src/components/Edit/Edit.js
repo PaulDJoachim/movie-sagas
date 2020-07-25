@@ -20,7 +20,8 @@ class Edit extends Component {
       this.setState({
         title: this.props.reduxState.details.title,
         description: this.props.reduxState.details.description,
-        poster: this.props.reduxState.details.poster
+        poster: this.props.reduxState.details.poster,
+        id: this.props.reduxState.details.id
       })
     }
   }
@@ -34,11 +35,14 @@ class Edit extends Component {
   
   editDesc = (event) => {
     this.setState({
-      title: event.target.value
+      description: event.target.value
     })
     console.log(this.state.description)
   }
 
+  submitEdit = () =>{
+    this.props.dispatch({type: 'EDIT_MOVIE', payload: this.state})
+  }
 
   render() {
     return (
@@ -48,7 +52,7 @@ class Edit extends Component {
         <input value={this.state.title} onChange={this.editTitle}></input>
         </h1>
         <textarea value={this.state.description} onChange={this.editDesc}></textarea>
-        
+        <button onClick={this.submitEdit}>Submit</button>
       </div>
     );
   }
