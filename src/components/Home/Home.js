@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import Movie from '../Movie/Movie'
 
 class Home extends Component {
   componentDidMount(){
     // Get movies from database
-    console.log('hello!')
     this.props.dispatch({type: 'GET_MOVIES'})
   }
 
@@ -14,7 +13,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <p>Empty Page</p>
+        <p>Movie List</p>
+        {/* {JSON.stringify(this.props.reduxState.movies)} */}
+        {this.props.reduxState.movies.map((movie, index) => (
+          <Movie key={index} id={index}/>
+        ))}
       </div>
     );
   }
