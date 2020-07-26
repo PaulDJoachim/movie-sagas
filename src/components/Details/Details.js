@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
-
+import {Container, Box, Grid} from '@material-ui/core';
+import './Details.css'
 
 class Details extends Component {
 
@@ -24,18 +25,25 @@ class Details extends Component {
   render() {
     return (
       <div className="Details">
-        <img src={this.props.reduxState.details.poster} alt={this.props.reduxState.details.title}/>
-        <h1>{this.props.reduxState.details.title}</h1>
-        {console.log(this.props.reduxState.details)}
-        <ul>
-          <h3>Genres</h3>
-          {this.props.reduxState.details.array_agg.map((genre, index)=>(  
-            <li key={index}>{genre}</li>
-          ))}
-        </ul>
-        <p>{this.props.reduxState.details.description}</p>
-        <button onClick={this.handleClick}>Edit</button>
-        
+        <Container>
+          <Grid container spacing={4}>
+            <Grid item lg={2} md={3} xs={3}>
+              <img src={this.props.reduxState.details.poster} alt={this.props.reduxState.details.title}/>
+              <ul>
+                <h3>Genres</h3>
+                {this.props.reduxState.details.array_agg.map((genre, index)=>(  
+                  <li key={index}>{genre}</li>
+                ))}
+              </ul>
+            </Grid>
+            <Grid item lg={10} md={9} xs={9}>
+            <h1>{this.props.reduxState.details.title}</h1>
+            {console.log(this.props.reduxState.details)}
+            <p>{this.props.reduxState.details.description}</p>
+            <button onClick={this.handleClick}>Edit</button>
+            </Grid>
+          </Grid>
+        </Container>
       </div>
     );
   }

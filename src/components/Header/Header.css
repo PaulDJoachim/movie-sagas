@@ -1,0 +1,17 @@
+.homeLink {
+  position: absolute;
+  right: 90%;
+  margin-left: 30px;
+
+}
+
+.Header {
+  background-image: linear-gradient(#ddb916, #917a14);
+  height: 80px;
+  border-bottom: solid 1px black;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 0;
+}

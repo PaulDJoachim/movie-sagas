@@ -12,13 +12,13 @@ const styles = () => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
     overflow: 'hidden',
-    backgroundColor: 'green',
 
   },
   gridList: {
     width: 'auto',
     height: 'auto',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 20,
   },
   gridListTile: {
     justifyContent: 'center',
@@ -43,14 +43,16 @@ class Home extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-        <GridList spacing={8} cellHeight={'auto'} className={classes.gridList} cols={'auto'}>
-          {/* {JSON.stringify(this.props.reduxState.movies)} */}
-          {this.props.reduxState.movies.map((movie, index) => (
-            <GridListTile className={classes.gridListTile} key={index} cols={1}>
-              <img src={movie.poster} alt={movie.title} onClick={()=>this.handleClick(movie)} />
-            </GridListTile>
-          ))}
-        </GridList>
+        <Container>
+          <GridList spacing={8} cellHeight={'auto'} className={classes.gridList} cols={'auto'}>
+            {/* {JSON.stringify(this.props.reduxState.movies)} */}
+            {this.props.reduxState.movies.map((movie, index) => (
+              <GridListTile className={classes.gridListTile} key={index} cols={1}>
+                <img src={movie.poster} alt={movie.title} onClick={()=>this.handleClick(movie)} />
+              </GridListTile>
+            ))}
+          </GridList>
+        </Container>
       </div>
     );
   }
