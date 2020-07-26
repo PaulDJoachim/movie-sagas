@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
-import {Container, Box, Grid, Typography} from '@material-ui/core';
+import {Container, Box, Grid, Typography, Button} from '@material-ui/core';
 import './Details.css'
 import Fade from 'react-reveal/Fade';
 
@@ -46,7 +46,7 @@ class Details extends Component {
                 <Typography variant="body1">
                   <p>{this.props.reduxState.details.description}</p>
                 </Typography>
-                  <button onClick={this.handleClick}>Edit</button>
+                  <Button variant="contained" color="primary" onClick={this.handleClick}>Edit</Button>
               </Grid>
             </Grid>
           </Fade>

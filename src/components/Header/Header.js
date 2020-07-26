@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import {Link} from 'react-router-dom';
-import {Typography} from '@material-ui/core';
+import {Typography, Button} from '@material-ui/core';
 import './Header.css'
 import 'fontsource-roboto';
 
@@ -17,7 +17,7 @@ class Header extends Component {
   render() {
     return (
       <div className="Header">
-        <Link className='homeLink' to='/'><button>Home</button></Link>
+        <Link className='homeLink' to='/'><Button variant="contained" color="primary">Home</Button></Link>
         <Typography variant="h4" >
           PMDB: The Prime Movie Database
         </Typography>
