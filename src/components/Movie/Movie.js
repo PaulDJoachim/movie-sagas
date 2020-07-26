@@ -8,6 +8,7 @@ class Movie extends Component {
   handleClick = (event) => {
     console.log(this.props.history)
     this.props.dispatch({type:'SET_DETAIL', payload:this.props.movie})
+    // this.props.dispatch({type:'GET_GENRES', payload:this.props.movie.id})
     this.props.history.push('/details')
   }
   

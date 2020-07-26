@@ -41,7 +41,16 @@ class Edit extends Component {
   }
 
   submitEdit = () =>{
+    // send edit to server
     this.props.dispatch({type: 'EDIT_MOVIE', payload: this.state})
+    // update 'details' redux store 
+    this.props.dispatch({type:'SET_DETAIL', payload:this.state})
+    // go back to details page to view changes
+    this.props.history.push('/details')
+  }
+
+  cancel = () =>{
+    this.props.history.push('/details')
   }
 
   render() {
@@ -52,6 +61,7 @@ class Edit extends Component {
         <input value={this.state.title} onChange={this.editTitle}></input>
         </h1>
         <textarea value={this.state.description} onChange={this.editDesc}></textarea>
+        <button onClick={this.cancel}>Cancel</button>
         <button onClick={this.submitEdit}>Submit</button>
       </div>
     );

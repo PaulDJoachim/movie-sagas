@@ -22,6 +22,7 @@ import { takeEvery, put } from 'redux-saga/effects';
 function* rootSaga() {
   yield takeEvery('GET_MOVIES', getMovies);
   yield takeEvery('EDIT_MOVIE', editMovie);
+  // yield takeEvery('GET_GENRES', getGenres);
 }
 
 function* getMovies(){
@@ -30,22 +31,35 @@ function* getMovies(){
     const response = yield axios.get('/movies');
     // in Sagas, replace `dispatch` with `put`
     yield put({ type: 'SET_MOVIES', payload: response });
+    console.log('response from getMovies saga', response)
   } catch (error) {
       console.log('error with movie get request', error);
   }
 }
 
 
+// sends edit info to database
 function* editMovie(action){
   //us try/catch for errors - replaces promise .then & .catch
   try {
     const response = yield axios.put('/movies', action.payload);
-
     // yield put({ type: 'SET_MOVIES', payload: response });
   } catch (error) {
       console.log('error with movie edit request', error);
   }
 }
+
+
+// function* getGenres(action){
+//   try {
+//     const response = yield axios.put('/movies/genre', action);
+//     // in Sagas, replace `dispatch` with `put`
+//     yield put({ type: 'SET_GENRES', payload: response });
+//     console.log('response from getMovies saga', response)
+//   } catch (error) {
+//       console.log('error with movie get request', error);
+//   }
+// }
 
 
 
@@ -62,7 +76,7 @@ const movies = (state = [], action) => {
 }
 
 // Used to store details about a single movie selected by the user
-const details = (state = [], action) => {
+const details = (state = {array_agg: []}, action) => {
   switch (action.type) {
       case 'SET_DETAIL':
           return action.payload;
@@ -72,14 +86,14 @@ const details = (state = [], action) => {
 }
 
 // Used to store the movie genres
-const genres = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_GENRES':
-            return action.payload;
-        default:
-            return state;
-    }
-}
+// const genres = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_GENRES':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
 
 
 
@@ -91,7 +105,6 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         details,
-        genres,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

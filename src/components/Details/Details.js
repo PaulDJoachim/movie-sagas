@@ -7,7 +7,8 @@ class Details extends Component {
   componentDidMount(){
     // checks if there is anything in the 'details' redux state
     // and goes to homepage if nothing found
-    if (this.props.reduxState.details.length === 0){
+    console.log(this.props.reduxState.details.array_agg.length)
+    if (this.props.reduxState.details.array_agg.length === 0){
       this.props.history.push('/');
     }
   }
@@ -24,6 +25,13 @@ class Details extends Component {
       <div className="Details">
         <img src={this.props.reduxState.details.poster} alt={this.props.reduxState.details.title}/>
         <h1>{this.props.reduxState.details.title}</h1>
+        {console.log(this.props.reduxState.details)}
+        <ul>
+          <h3>Genres</h3>
+          {this.props.reduxState.details.array_agg.map((genre, index)=>(  
+            <li key={index}>{genre}</li>
+          ))}
+        </ul>
         <p>{this.props.reduxState.details.description}</p>
         <button onClick={this.handleClick}>Edit</button>
         
