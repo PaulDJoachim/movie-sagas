@@ -18,6 +18,7 @@ import { takeEvery, put } from 'redux-saga/effects';
 
 
 
+
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeEvery('GET_MOVIES', getMovies);

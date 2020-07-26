@@ -1,30 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Movie from '../Movie/Movie'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
+import {GridList, GridListTile, Container} from '@material-ui/core';
 
-const styles = theme => ({
+
+const styles = () => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     overflow: 'hidden',
-    backgroundColor: 'rgba(0,0,0,0) 100%',
+    backgroundColor: 'green',
 
   },
   gridList: {
     width: 'auto',
     height: 'auto',
-    justifyContent: 'space-around',
+    justifyContent: 'center'
   },
-  titleBar: {
-    background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-  },
+  gridListTile: {
+    justifyContent: 'center',
+  }
 });
 
 
@@ -34,17 +32,22 @@ class Home extends Component {
     this.props.dispatch({type: 'GET_MOVIES'})
   }
 
-
+  handleClick = (movie) => {
+    console.log(this.props.history)
+    this.props.dispatch({type:'SET_DETAIL', payload: movie})
+    // this.props.dispatch({type:'GET_GENRES', payload:this.props.movie.id})
+    this.props.history.push('/details')
+  }
   
   render() {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-        <GridList cellHeight={'auto'} className={classes.Home} cols={0}>
+        <GridList spacing={8} cellHeight={'auto'} className={classes.gridList} cols={'auto'}>
           {/* {JSON.stringify(this.props.reduxState.movies)} */}
           {this.props.reduxState.movies.map((movie, index) => (
-            <GridListTile key={index} cols={1}>
-              <Movie movie={movie}/>
+            <GridListTile className={classes.gridListTile} key={index} cols={1}>
+              <img src={movie.poster} alt={movie.title} onClick={()=>this.handleClick(movie)} />
             </GridListTile>
           ))}
         </GridList>
@@ -62,4 +65,4 @@ const mapStateToProps = reduxState => ({
   reduxState,
 });
 
-export default withStyles(styles)(connect(mapStateToProps)(Home));
+export default withStyles(styles,{withTheme: true})(connect(mapStateToProps)(Home));
