@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {GridList, GridListTile, Container} from '@material-ui/core';
+import Fade from 'react-reveal/Fade';
 
 
 const styles = () => ({
@@ -44,14 +45,16 @@ class Home extends Component {
     return (
       <div className={classes.root}>
         <Container>
-          <GridList spacing={8} cellHeight={'auto'} className={classes.gridList} cols={'auto'}>
-            {/* {JSON.stringify(this.props.reduxState.movies)} */}
-            {this.props.reduxState.movies.map((movie, index) => (
-              <GridListTile className={classes.gridListTile} key={index} cols={1}>
-                <img src={movie.poster} alt={movie.title} onClick={()=>this.handleClick(movie)} />
-              </GridListTile>
-            ))}
-          </GridList>
+          <Fade bottom>
+            <GridList spacing={8} cellHeight={'auto'} className={classes.gridList} cols={'auto'}>
+              {/* {JSON.stringify(this.props.reduxState.movies)} */}
+              {this.props.reduxState.movies.map((movie, index) => (
+                <GridListTile className={classes.gridListTile} key={index} cols={1}>
+                  <img src={movie.poster} alt={movie.title} onClick={()=>this.handleClick(movie)} />
+                </GridListTile>
+              ))}
+            </GridList>
+          </Fade>
         </Container>
       </div>
     );

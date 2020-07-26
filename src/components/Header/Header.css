@@ -6,10 +6,10 @@
 }
 
 .Header {
-  background-image: linear-gradient(#ddb916, #917a14);
-  height: 80px;
+  background-image: linear-gradient(#d8b92f, #92823c);
   border-bottom: solid 1px black;
   margin-bottom: 10px;
+  padding: 20px;
 }
 
 h2 {

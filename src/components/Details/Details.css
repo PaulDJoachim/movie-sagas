@@ -1,3 +1,28 @@
 .Details{
   height: 100%;
 }
+
+.MuiGrid-root {
+  margin-top: 20px !important;
+  padding: 20px;
+}
+
+.detailBox {
+  background-color: #d8b92f;
+}
+
+.posterBox {
+  background-color: #ebd98d;
+}
+
+p {
+  text-align: left;
+  background-color: #ebd98d;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
