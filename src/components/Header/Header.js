@@ -5,6 +5,7 @@ import {Typography, Button} from '@material-ui/core';
 import './Header.css'
 import 'fontsource-roboto';
 
+
 class Header extends Component {
   
 
@@ -18,8 +19,8 @@ class Header extends Component {
     return (
       <div className="Header">
         <Link className='homeLink' to='/'><Button variant="contained" color="primary">Home</Button></Link>
-        <Typography variant="h4" >
-          PMDB: The Prime Movie Database
+        <Typography variant="h4" component="h6" >
+          PMDB - The Prime Movie Database
         </Typography>
 
       </div>

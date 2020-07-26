@@ -35,3 +35,37 @@ ul {
   margin-bottom: 20px !important;
 }
 
+input {
+  font-size: large;
+  font-weight: bold;
+}
+
+textarea {
+  width: 90%;
+  height: 200px;
+}
+
+.MuiInputBase-root {
+  width: 100% !important;
+  height: 200px;
+}
+
+.MuiFormControl-root {
+  width: 100% !important;
+  height: 200px;
+}
+
+.title {
+
+  height: 50px;
+  width: 60% !important;
+  margin-bottom: 10px !important;
+}
+ #title {
+  font-size: large !important;
+  font-weight: bold;
+ }
+
+ .MuiButtonBase-root {
+   margin-left: 10px !important;
+ }

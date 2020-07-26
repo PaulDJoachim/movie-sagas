@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
-import {Container, Box, Grid} from '@material-ui/core';
-import './Edit.css'
+import {Container, Grid, Typography, TextField, Button} from '@material-ui/core';
+import '../Details/Details.css'
 
 class Edit extends Component {
   state = {
@@ -57,20 +57,41 @@ class Edit extends Component {
   }
 
   render() {
+    let title = this.state.title
     return (
       <div className="Edit">
         <Container>
           <Grid container spacing={4}>
-            <Grid item lg={2} md={3} xs={3}>
-            <img src={this.state.poster} alt={this.state.title}/>
+            <Grid item className="posterBox" lg={2} md={3} xs={3}>
+              <img src={this.state.poster} alt={this.state.title}/>
             </Grid>
-            <Grid item lg={10} md={9} xs={9}>
-            <h1>
-            <input value={this.state.title} onChange={this.editTitle}></input>
-            </h1>
-            <textarea value={this.state.description} onChange={this.editDesc}></textarea>
-            <button onClick={this.cancel}>Cancel</button>
-            <button onClick={this.submitEdit}>Submit</button>
+            <Grid item className="detailBox" lg={10} md={9} xs={9}>
+              <Typography variant="h4">
+                <TextField
+                  id="title"
+                  className="title"
+                  multiline
+                  rows={1}
+                  label="Title"
+                  defaultValue={title}
+                  onChange={this.editTitle}
+                  />
+                {/* <input value={this.state.title} onChange={this.editTitle}></input> */}
+              </Typography>
+              <Typography variant="body1">
+              <TextField
+                id="outlined-multiline-static"
+                label="Description"
+                multiline
+                rows={4}
+                defaultValue={this.state.description}
+                variant="outlined"
+                onChange={this.editDesc}
+                />
+                {/* <textarea value={this.state.description} onChange={this.editDesc}></textarea> */}
+              </Typography>
+              <Button variant="contained" onClick={this.cancel}>Cancel</Button>
+              <Button variant="contained" onClick={this.submitEdit}>Submit</Button>
             </Grid>
           </Grid>
         </Container>
